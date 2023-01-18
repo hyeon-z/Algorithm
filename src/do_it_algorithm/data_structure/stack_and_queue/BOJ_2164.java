@@ -30,7 +30,7 @@ import java.util.Queue;
 
     #주의 사항
     while문을 무한루프-break문으로 처리했다가 메모리 초과 발생
-    최대한 무한루프는 지향하도록 하자.
+    최대한 무한루프는 쓰지 말도록 하자.
  */
 public class BOJ_2164 {
     public static void main(String[] args) throws IOException {
