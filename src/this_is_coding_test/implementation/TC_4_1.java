@@ -40,14 +40,14 @@ public class TC_4_1 {
         int row = input.charAt(1) - '0';
         int count = 0;
 
-        int[] dx = {-2, -2, 2, 2, -1, 1, -1, 1};
-        int[] dy = {-1, 1, -1, 1, -2, -2, 2, 2};
+        int[] dx = {-1, 1, -1, 1, -2, -2, 2, 2};
+        int[] dy = {-2, -2, 2, 2, -1, 1, -1, 1};
 
         for (int i = 0; i < dx.length; i++) {
-            int nx = column + dx[i];
-            int ny = row + dy[i];
+            int nextRow = row + dx[i];
+            int nextColumn = column + dy[i];
 
-            if (nx < 1 || nx > 8 || ny < 1 || ny > 8)
+            if (nextRow < 1 || nextRow > 8 || nextColumn < 1 || nextColumn > 8)
                 continue;
 
             count++;
