@@ -1,4 +1,4 @@
-package src.algorithm_study;
+package src.algorithm_study.week1;
 
 import java.io.BufferedReader;
 import java.io.IOException;

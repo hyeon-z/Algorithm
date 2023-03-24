@@ -1,4 +1,4 @@
-package src.algorithm_study;
+package src.algorithm_study.week1;
 
 import java.util.Scanner;
 
@@ -26,37 +26,35 @@ public class PG_60057 {
         Scanner sc = new Scanner(System.in);
         String s = sc.nextLine();
 
+        System.out.println(solution(s));
+    }
+
+    public static int solution(String s) {
         int len = s.length();
         int min = len;
 
         for (int i = 1; i <= len / 2; i++) {
             StringBuilder result = new StringBuilder();
             String prevText = s.substring(0, i);
-            int loop = len / i + (len % i == 0 ? 0 : 1);
             int count = 1;
 
-            for (int j = 1; j < loop; j++) {
-                String splitText = s.substring(j * i, Math.min(j * i + i, len));
+            for (int j = i; j <= len; j += i) {
+                String splitText = s.substring(j, Math.min(j + i, len));
                 if (splitText.equals(prevText)) {
                     count++;
                 } else {
-                    if (count == 1) {
-                        result.append(prevText);
-                    } else {
-                        result.append(count).append(prevText);
-                        count = 1;
+                    if (count > 1) {
+                        result.append(count);
                     }
+                    count = 1;
+                    result.append(prevText);
                     prevText = splitText;
                 }
             }
 
-            if (count == 1) result.append(prevText);
-            else {
-                result.append(count).append(prevText);
-            }
-
+            result.append(prevText);
             min = Math.min(min, result.length());
         }
-        System.out.println(min);
+        return min;
     }
 }
