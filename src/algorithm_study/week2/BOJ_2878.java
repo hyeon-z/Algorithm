@@ -14,8 +14,8 @@ package src.algorithm_study.week2;
     택희가 받은 사탕의 개수와 친구의 수, 그리고 그 친구들이 받고 싶어하는 사탕의 개수가 주어졌을 때, 사탕을 적절히 나누어 주어 친구들의 분노의 합을 최소화해 그 값을 출력하는 프로그램을 작성하시오.
 
     # 입력
-    첫째 줄에 M(1 ≤ M ≤ 2×109)와 N(1 ≤ N ≤ 100,000)이 주어진다. 둘째 줄부터 N개의 줄에는 각 친구들이 받고 싶어하는 사탕의 개수가 주어진다.
-    이 개수는 2×109보다 작으며, 친구들이 받고 싶어하는 사탕의 개수의 합은 항상 M을 넘는다.
+    첫째 줄에 M(1 ≤ M ≤ 2×10^9)와 N(1 ≤ N ≤ 100,000)이 주어진다. 둘째 줄부터 N개의 줄에는 각 친구들이 받고 싶어하는 사탕의 개수가 주어진다.
+    이 개수는 2×10^9보다 작으며, 친구들이 받고 싶어하는 사탕의 개수의 합은 항상 M을 넘는다.
 
     # 출력
     첫째 줄에 택희 친구들의 분노의 합의 최솟값을 2^64로 나눈 나머지를 출력한다.
@@ -32,9 +32,9 @@ public class BOJ_2878 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int M = Integer.parseInt(st.nextToken());
+        long M = Integer.parseInt(st.nextToken());
         int N = Integer.parseInt(st.nextToken());
-        int[] friends = new int[N];
+        long[] friends = new long[N];
         long sum = 0;
 
         for (int i = 0; i < N; i++) {
@@ -48,7 +48,7 @@ public class BOJ_2878 {
         long anger = 0;
 
         // 최대한 균등하게 분배
-        for (int friend : friends) {
+        for (long friend : friends) {
             long candy = Math.min(friend, count / N--);
             anger += candy * candy;
             count -= candy;

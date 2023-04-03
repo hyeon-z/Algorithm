@@ -29,7 +29,7 @@ import java.util.StringTokenizer;
 
 public class BOJ_1780 {
     static int[][] paperMap;
-    static int minusOne = 0, zero = 0, one = 0;
+    static int[] count;
     static int N;
 
     public static void main(String[] args) throws IOException {
@@ -38,6 +38,7 @@ public class BOJ_1780 {
 
         N = Integer.parseInt(br.readLine());
         paperMap = new int[N][N];
+        count = new int[3];
 
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
@@ -48,40 +49,33 @@ public class BOJ_1780 {
 
         divide(0, 0, N);
 
-        System.out.println(minusOne);
-        System.out.println(zero);
-        System.out.println(one);
+        for (int i = 0; i < 3; i++) {
+            System.out.println(count[i]);
+        }
+
     }
 
-    static void divide(int r, int c, int size) {
-        if (checkPaper(r, c, size)) {
-            int num = paperMap[r][c];
-
-            if (num == -1) {
-                minusOne++;
-            } else if (num == 0) {
-                zero++;
-            } else {
-                one++;
-            }
+    static void divide(int r, int c, int n) {
+        // 종이가 모두 같은 수로 되어있는 경우
+        if (checkNum(r, c, n)) {
+            count[paperMap[r][c] + 1]++;
             return;
         }
 
-        int newSize = size / 3;
-
+        // 그렇지 않은 경우
+        int quot = n / 3;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                divide(r + newSize * i, c + newSize * j, newSize);
+                divide(r + i * quot, c + j * quot, quot);
             }
         }
-
     }
 
-    static boolean checkPaper(int r, int c, int size) {
+    static boolean checkNum(int r, int c, int n) {
         int num = paperMap[r][c];
 
-        for (int i = r; i < r + size; i++) {
-            for (int j = c; j < c + size; j++) {
+        for (int i = r; i < r + n; i++) {
+            for (int j = c; j < c + n; j++) {
                 if (num != paperMap[i][j]) {
                     return false;
                 }

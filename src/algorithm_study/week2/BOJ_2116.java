@@ -39,75 +39,68 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ_2116 {
-    static int[] diceNum;
+    static int[][] dice;
     static final int diceCount = 6;
+    static int[] diceMatch = {5, 3, 4, 1, 2, 0};  // A-F, B-D, C-E
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
 
         int N = Integer.parseInt(br.readLine());
-        int[][] dice = new int[N][6];
+        dice = new int[N][diceCount];
 
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < 6; j++) {
+            for (int j = 0; j < diceCount; j++) {
                 dice[i][j] = Integer.parseInt(st.nextToken());
             }
         }
 
-        diceNum = new int[]{5, 3, 4, 1, 2, 0}; // A - F, B - D, C - E
         int result = 0;
 
-        if (N < 1) {
-            System.out.println(0);
-            return;
-        }
-
         for (int i = 0; i < diceCount; i++) {
-            int bottom = i;
-            int max = findMax(dice, 0, bottom);
-            int totalMax = max;
-            int topNum = dice[0][diceNum[bottom]];
+            int bottom = dice[0][i];
+            int totalMax = findMax(0, i);
 
             for (int j = 1; j < N; j++) {
-                bottom = findBottom(dice, j, topNum);
-                topNum = dice[j][diceNum[bottom]];
-
-                max = findMax(dice, j, bottom);
-                totalMax += max;
+                int nBottomIndex = findNextBottomIndex(j, bottom);
+                totalMax += findMax(j, nBottomIndex);
+                bottom = dice[j][nBottomIndex];
             }
-            result = Math.max(result, totalMax);
+
+            result = Math.max(totalMax, result);
         }
 
         System.out.println(result);
     }
 
-    // 옆면의 최댓값 찾기
-    public static int findMax(int[][] dice, int i, int bottom) {
-        int max = 0;
+    // index+1번째 주사위 아랫면 숫자로 다음 주사위 아랫면 index 찾기
+    static int findNextBottomIndex(int index, int bottom) {
+        int nBottomIndex = 0;
 
-        for (int j = 0; j < 6; j++) {
-            if (j == bottom || j == diceNum[bottom]) {
-                continue;
-            }
-            if (dice[i][j] > max) {
-                max = dice[i][j];
-            }
-        }
-        return max;
-    }
-
-    // 윗면의 숫자와 같은 아랫면 숫자의 index 찾기
-    public static int findBottom(int[][] dice, int i, int topNum) {
-        int bottom = 0;
-
-        for (int j = 0; j < 6; j++) {
-            if (dice[i][j] == topNum) {
-                bottom = j;
+        for (int i = 0; i < diceCount; i++) {
+            if (dice[index][i] == bottom) {
+                nBottomIndex = diceMatch[i];
                 break;
             }
         }
-        return bottom;
+
+        return nBottomIndex;
+    }
+
+    static int findMax(int index, int bottomIndex) {
+        int max = 0;
+
+        for (int i = 0; i < diceCount; i++) {
+            if (i == bottomIndex || i == diceMatch[bottomIndex]) {
+                continue;
+            }
+            if (max < dice[index][i]) {
+                max = dice[index][i];
+            }
+        }
+
+        return max;
     }
 }
