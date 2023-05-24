@@ -33,4 +33,29 @@
      <tr style="text-align: center">
         <td>BOJ</td><td>1476</td><td>골드바흐의 추측</td><td>실버1</td>
     </tr>
+    <tr style="text-align: center">
+        <td rowspan="8"><a href="https://www.acmicpc.net/workbook/view/9371">브루트 포스</td>
+        <td>BOJ</td><td>2309</td><td>일곱 난쟁이</td><td>브론즈1</td>
+    </tr>
+    <tr style="text-align: center">
+        <td>BOJ</td><td>3085</td><td>사탕 게임</td><td>실버2</td>
+    </tr>
+    <tr style="text-align: center">
+        <td>BOJ</td><td>1476</td><td>날짜 계산</td><td>실버5</td>
+    </tr>
+    <tr style="text-align: center">
+        <td>BOJ</td><td>1107</td><td>리모컨</td><td>골드5</td>
+    </tr>
+    <tr style="text-align: center">
+        <td>BOJ</td><td>14500</td><td>테트로미노</td><td>골드4</td>
+    </tr>
+     <tr style="text-align: center">
+        <td>BOJ</td><td>6064</td><td>카잉 달력</td><td>실버1</td>
+    </tr>
+     <tr style="text-align: center">
+        <td>BOJ</td><td>1748</td><td>수 이어 쓰기1</td><td>실버4</td>
+    </tr>
+     <tr style="text-align: center">
+        <td>BOJ</td><td>9095</td><td>1, 2, 3 더하기</td><td>실버3</td>
+    </tr>
 </table>
